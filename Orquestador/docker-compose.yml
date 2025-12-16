@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  full-environment:
+    image: ale28ab/proyecto1:alejandro
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: full-environment
+    command: >
+      bash -c "
+      echo '===== VALIDACIÓN DE ENTORNO =====' &&
+      echo 'Usuario:' && whoami &&
+      echo 'Directorio:' && pwd &&
+      echo '--- RPM ---' && rpm --version &&
+      echo '--- Python ---' && python3 --version &&
+      echo '--- Node ---' && node --version &&
+      echo '--- Yarn ---' && yarn --version &&
+      echo '--- Ruby ---' || true
+      "
